@@ -1,0 +1,37 @@
+body {
+    text-align: center;
+    /* Background image from http://wallpaperswide.com/super_mario_game-wallpapers.html */
+    background-image: url('../images/background.jpg'); 
+    font-family: 'Coda', cursive;
+}
+
+   hr {
+        border: none;
+        height: 3px;
+        width:510px;
+        background-color: #778899;
+    }
+
+    .container {
+        display: flex;
+        align-items: center;
+    }
+
+    .data {
+        width: 50%;
+        height: 50%;
+        border:1px solid black;
+        margin: 0 0 0 0;
+        color: #3b3939;
+    }
+
+    .cell {
+        padding-left: initial;
+        text-align: left;
+        border:1px solid black;
+        font-weight: bold;
+    }
+
+    header {
+        padding-top: 70px;
+    }
