@@ -101,22 +101,22 @@ var Engine = (function (global) {
             if ((player.y - enemy.y < 3 && player.y - enemy.y > -3) &&
                 (player.x - enemy.x < 5 && player.x - enemy.x > -5)) {
 
-                window.lives -= 1;
-                if (window.lives == 0)
+                player.lives -= 1;
+                if (player.lives == 0)
                 {
                     // Updates all grid values.
-                    window.lives = 5;
-                    updateCells('.livesvalue', window.lives);
+                    player.lives = 5;
+                    updateCells('.livesvalue', player.lives);
 
                     // Lost games
-                    window.gamesLost += 1;
-                    updateCells('.lostvalue', window.gamesLost);
+                    player.gamesLost += 1;
+                    updateCells('.lostvalue', player.gamesLost);
                     updateCells('.pointsvalue', 0);
                     updateCells('.wonvalue', 0);
                 }
 
                 // Update Games lives:
-                updateCells('.livesvalue', window.lives);
+                updateCells('.livesvalue', player.lives);
 
                 reset();
             }

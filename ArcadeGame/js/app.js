@@ -1,14 +1,23 @@
+'use strict';
+/* Class Character */
+class Character {
+    constructor(x, y, speed) {
+        this.x = x;
+        this.y = y;
+        this.speed = speed;
+    }
+    update() { };
 
-/* Global variables */
-window.lives = 5;
-window.points = 0;
-window.gamesWon = 0;
-window.gamesLost = 0;
+    render() { };
 
-/* Class Enemy*/
-class Enemy {
+    reset() { };
+}
+
+/* Class Enemy inherts from Character class */
+class Enemy extends Character {
     constructor(x, y, speed)
     {
+        super(x,y,speed);
         this.speed = Math.round(Math.random() * 3) + 1;
 
         setTimeout(() => {
@@ -32,14 +41,25 @@ class Enemy {
     }
 }
 
-/* Class Player */
-class Player {
+var bug1 = new Enemy(-80, 66, Math.round(Math.random() * 2));
+var bug2 = new Enemy(-80, 149, Math.round(Math.random() * 3));
+var bug3 = new Enemy(-80, 232, Math.round(Math.random() * 2));
+
+window.allEnemies = [bug1, bug2, bug3];
+
+/* Class Player inherts from Character class */
+class Player extends Character {
+    lives = 5;
+    points = 0;
+    gamesWon = 0;
+    gamesLost = 0;
+
     constructor(x, y) {
+        super();
         this.avatar = 'images/char-boy.png';
         this.x = 2 * 101;
         this.y = 5 * 80;
     }
-
 
     update() {
     }
@@ -64,24 +84,24 @@ class Player {
 
                 if (this.y < 0) {
                     // Award the player 10 points
-                    points += 10
-                    updateCells('.pointsvalue', points);
+                    this.points += 10
+                    updateCells('.pointsvalue', this.points);
 
                     // check if the accumulation of points equal to 20 points
-                    if (window.points == 20) {
+                    if (this.points == 20) {
                         // Display winning Message and then reset all values
-                        window.gamesWon += 1;
-                        window.points = 0;
-                        window.lives = 5;
+                        this.gamesWon += 1;
+                        this.points = 0;
+                        this.lives = 5;
 
                         // Show the number of lives.
-                        updateCells('.livesvalue', window.lives);
+                        updateCells('.livesvalue', this.lives);
 
                         // Update Games won:
-                        updateCells('.wonvalue', window.gamesWon);
+                        updateCells('.wonvalue', this.gamesWon);
                     }
 
-                    player.reset();
+                    this.reset();
                 }
                 break;
         }
@@ -98,13 +118,6 @@ function updateCells(className, value)
     let divSelected = document.querySelector(className);
     divSelected.textContent = value;
 }
-
-
-var bug1 = new Enemy(-80, 66, Math.round(Math.random() * 2));
-var bug2 = new Enemy(-80, 149, Math.round(Math.random() * 3));
-var bug3 = new Enemy(-80, 232, Math.round(Math.random() * 2));
-
-window.allEnemies = [bug1, bug2, bug3];
 
 var player = new Player();
 
