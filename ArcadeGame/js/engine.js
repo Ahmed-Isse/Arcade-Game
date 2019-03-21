@@ -98,8 +98,8 @@ var Engine = (function (global) {
 
     function checkCollisions() {
         allEnemies.forEach(enemy => {
-            if ((player.y - enemy.y < 3 && player.y - enemy.y > -3) &&
-                (player.x - enemy.x < 5 && player.x - enemy.x > -5)) {
+            if ((player.y - enemy.y < 10 && player.y - enemy.y > -10) &&
+                (player.x - enemy.x < 70 && player.x - enemy.x > -70)) {
 
                 player.lives -= 1;
                 if (player.lives == 0)
